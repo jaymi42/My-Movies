@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">My Movies</string>
+    <string name="movie_title">Movie Title</string>
+    <string name="enter_movie_title_here">Enter movie title here</string>
+    <string name="genre">Genre</string>
+    <string name="enter_genre_here">Enter genre here</string>
+    <string name="year">Year</string>
+    <string name="enter_year_of_release_here">Enter year of release here</string>
+    <string name="rating">Rating</string>
+    <string name="insert">Insert</string>
+    <string name="show_list">Show List</string>
+    <string name="show_all_pg_13_movies">Show All PG-13 Movies</string>
+    <string name="show_all_movies_with_this_rating">Show all movies with this rating</string>
+    <string-array name="spinnerItems">
+        <item>G</item>
+        <item>PG</item>
+        <item>PG13</item>
+        <item>NC16</item>
+        <item>M18</item>
+        <item>R21</item>
+    </string-array>
+</resources>
