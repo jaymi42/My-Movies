@@ -102,7 +102,7 @@ public class DBHelper extends SQLiteOpenHelper {
         return MovieList;
     }
 
-    public ArrayList<Movie> getMoviesByYear(String rating) {
+    public ArrayList<Movie> getMoviesByRating(String rating) {
         ArrayList<Movie> MovieList = new ArrayList<Movie>();
         SQLiteDatabase db = this.getReadableDatabase();
         String[] columns = {COLUMN_ID, COLUMN_TITLE, COLUMN_GENRE,COLUMN_YEAR,COLUMN_RATING};

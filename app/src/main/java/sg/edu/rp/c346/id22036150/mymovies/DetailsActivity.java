@@ -16,13 +16,14 @@ import java.util.ArrayList;
 public class DetailsActivity extends AppCompatActivity {
 
     ListView lvMovies;
-    //Button btnRating;
-    Button btnPG13;
+    Button btnRating;
+    //Button btnPG13;
     ArrayList<Movie> movies;
     CustomAdapter adapter;
     Spinner dtSpn;
     ArrayAdapter<String> aaSpn;
     ArrayList<Movie> strList;
+    String selectedRating;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,15 +31,15 @@ public class DetailsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_details);
 
         Intent intentSelected = getIntent();
-        //btnRating = findViewById(R.id.btnRating);
+        btnRating = findViewById(R.id.btnRating);
         lvMovies = findViewById(R.id.lvMovies);
-        btnPG13 = findViewById(R.id.btnPG13);
-        //dtSpn = findViewById(R.id.spinner);
+        //btnPG13 = findViewById(R.id.btnPG13);
+        dtSpn = findViewById(R.id.spinner);
 
-        //strList = new ArrayList<>();
-        //aaSpn = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item);
+        strList = new ArrayList<>();
+        aaSpn = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item);
 
-        /**ArrayList<String> rate = new ArrayList<>();
+        ArrayList<String> rate = new ArrayList<>();
         DBHelper db = new DBHelper(DetailsActivity.this);
         ArrayList<Movie> movieList = db.getMovies();
         for (Movie movie: movieList){
@@ -50,7 +51,7 @@ public class DetailsActivity extends AppCompatActivity {
 
         for(String rating: rate){
             aaSpn.add(rating);
-        }**/
+        }
 
         //dtSpn.setAdapter(aaSpn);
 
@@ -65,39 +66,33 @@ public class DetailsActivity extends AppCompatActivity {
 
         ArrayList<String> data = dbh.getMovieContent();
 
-        /**dtSpn.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+        dtSpn.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                movies = db.getMoviesByYear(parent.getItemAtPosition(position).toString());
-                CustomAdapter list = new CustomAdapter(DetailsActivity.this, R.layout.row, strList);
-                lvMovies.setAdapter(list);
-                db.close();
-                list.clear();
-                for (int i = 0; i < movies.size(); i++) {
-                    list.add(movies.get(i));
-                    list.notifyDataSetChanged();
-                }
+                selectedRating = parent.getItemAtPosition(position).toString();
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-
-        });**/
-
-        lvMovies.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Movie data = movies.get(position);
-
-                Intent intent = new Intent(DetailsActivity.this, UpdateActivity.class);
-                intent.putExtra("data", data);
-                startActivity(intent);
             }
         });
 
-        btnPG13.setOnClickListener(new View.OnClickListener() {
+
+        if (!movies.isEmpty()) {
+            lvMovies.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    Movie data = movies.get(position);
+
+                    Intent intent = new Intent(DetailsActivity.this, UpdateActivity.class);
+                    intent.putExtra("data", data);
+                    startActivity(intent);
+                }
+            });
+        }
+
+        /**btnPG13.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 DBHelper db = new DBHelper(DetailsActivity.this);
@@ -112,6 +107,24 @@ public class DetailsActivity extends AppCompatActivity {
 
                 adapter = new CustomAdapter(DetailsActivity.this, R.layout.row, PG13List);
                 lvMovies.setAdapter(adapter);
+            }
+        });**/
+
+        btnRating.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DBHelper db = new DBHelper(DetailsActivity.this);
+
+                if (selectedRating != null) {
+                        ArrayList<Movie> selectedRatingMovies = db.getMoviesByRating(selectedRating);
+                        adapter = new CustomAdapter(DetailsActivity.this, R.layout.row, selectedRatingMovies);
+                        lvMovies.setAdapter(adapter);
+
+                } else {
+                    movies.clear();
+                    movies.addAll(db.getMovies());
+                    adapter.notifyDataSetChanged();
+                }
             }
         });
 

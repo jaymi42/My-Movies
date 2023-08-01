@@ -11,7 +11,7 @@
         android:id="@+id/textViewID"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Movie ID" />
+        android:text="@string/movie_id" />
 
     <EditText
         android:id="@+id/etID"
@@ -24,21 +24,21 @@
         android:id="@+id/tvTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Movie Title" />
+        android:text="@string/movie_title2" />
 
     <EditText
         android:id="@+id/etTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="Title"
+        android:hint="@string/title"
         android:inputType="text" />
 
     <TextView
         android:id="@+id/tvGenre"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Genre" />
+        android:text="@string/genre2" />
 
     <EditText
         android:id="@+id/etGenre"
@@ -46,14 +46,14 @@
         android:layout_height="wrap_content"
 
         android:ems="10"
-        android:hint="Genre"
+        android:hint="@string/genre3"
         android:inputType="text" />
 
     <TextView
         android:id="@+id/tvYear"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Year" />
+        android:text="@string/year2" />
 
     <EditText
         android:id="@+id/etYear"
@@ -61,13 +61,14 @@
         android:layout_height="wrap_content"
 
         android:ems="10"
-        android:hint="Year"
+        android:hint="@string/year3"
         android:inputType="text" />
 
     <Spinner
         android:id="@+id/spinnerRating"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:entries="@array/spinnerItems" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -79,7 +80,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="2"
-            android:text="Update" />
+            android:text="@string/update" />
 
         <Button
             android:id="@+id/Delete"

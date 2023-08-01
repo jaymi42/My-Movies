@@ -7,10 +7,22 @@
 
 
     <Button
-        android:id="@+id/btnPG13"
+        android:id="@+id/btnRating"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/show_all_pg_13_movies" />
+        android:text="@string/show_all_movies_with_this_rating" />
+
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:entries="@array/spinnerItems" />
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:background="?android:attr/listDivider" />
 
     <ListView
         android:id="@+id/lvMovies"

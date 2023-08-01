@@ -10,6 +10,8 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 
 public class CustomAdapter extends ArrayAdapter {
@@ -27,44 +29,43 @@ public class CustomAdapter extends ArrayAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        // Obtain the LayoutInflater object
         LayoutInflater inflater = (LayoutInflater)
                 parent_context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-        // "Inflate" the View for each row
         View rowView = inflater.inflate(layout_id, parent, false);
 
-        // Obtain the UI components and do the necessary binding
         TextView tvTitle = rowView.findViewById(R.id.textViewTitle);
         TextView tvGenre = rowView.findViewById(R.id.textViewGenre);
         TextView tvYear = rowView.findViewById(R.id.textViewYear);
         ImageView ivRating = rowView.findViewById(R.id.imageViewRating);
 
-        // Obtain the Android Version information based on the position
-        Movie Lists = movieList.get(position);
+        Movie movie = movieList.get(position);
 
-        // Set values to the TextView to display the corresponding information
-        tvTitle.setText(Lists.getTitle());
-        tvGenre.setText(Lists.getGenre());
-        tvYear.setText(""+ Lists.getYear());
+        tvTitle.setText(movie.getTitle());
+        tvGenre.setText(movie.getGenre());
+        tvYear.setText(""+ movie.getYear());
 
-        if(Lists.getRating().equals("G"))
-            ivRating.setImageResource(R.drawable.rating_g);
-        else if(Lists.getRating().equals("PG")){
-            ivRating.setImageResource(R.drawable.rating_pg);
-        }
-        else if(Lists.getRating().equals("PG13")){
-            ivRating.setImageResource(R.drawable.rating_pg13);
-        }
-        else if(Lists.getRating().equals("NC16")){
-            ivRating.setImageResource(R.drawable.rating_nc16);
-        }
-        else if(Lists.getRating().equals("M18")){
-            ivRating.setImageResource(R.drawable.rating_m18);
-        }
-        else if(Lists.getRating().equals("R21")){
-            ivRating.setImageResource(R.drawable.rating_m18);
-        }
+        String image = getRatingImageUrl(movie.getRating());
+        Picasso.with(parent_context).load(image).resize(100,100).into(ivRating);
+
+
         return rowView;
+    }
+
+    private String getRatingImageUrl(String rating) {
+        if (rating.equals("G"))
+            return "https://images.immediate.co.uk/production/volatile/sites/28/2019/02/16277-28797ce.jpg?quality=90&webp=true&fit=584,471";
+        else if (rating.equals("PG"))
+            return "https://images.immediate.co.uk/production/volatile/sites/28/2019/02/16278-28797ce.jpg?quality=90&webp=true&fit=584,471";
+        else if (rating.equals("PG13"))
+            return "https://images.immediate.co.uk/production/volatile/sites/28/2019/02/16279-8d5bdb7.jpg?quality=90&webp=true&fit=490,490";
+        else if (rating.equals("NC16"))
+            return "https://images.immediate.co.uk/production/volatile/sites/28/2019/02/16281-8d5bdb7.jpg?quality=90&webp=true&fit=490,490";
+        else if (rating.equals("M18"))
+            return "https://images.immediate.co.uk/production/volatile/sites/28/2019/02/16282-05127b2.jpg?quality=90&webp=true&fit=300,300";
+        else if (rating.equals("R21"))
+            return "https://images.immediate.co.uk/production/volatile/sites/28/2019/02/16283-05127b2.jpg?quality=90&webp=true&fit=515,424";
+        else
+            return "";
     }
 }

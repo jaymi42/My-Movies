@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -50,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
                         int year = Integer.parseInt(etYear.getText().toString());
 
                         dbh.insertMovie(title, genre, year, rating);
+                        Toast.makeText(MainActivity.this,"Movie added!", Toast.LENGTH_SHORT).show();
                     }
                 });
             }

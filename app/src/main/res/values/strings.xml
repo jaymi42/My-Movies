@@ -11,6 +11,14 @@
     <string name="show_list">Show List</string>
     <string name="show_all_pg_13_movies">Show All PG-13 Movies</string>
     <string name="show_all_movies_with_this_rating">Show all movies with this rating</string>
+    <string name="movie_id">Movie ID</string>
+    <string name="movie_title2">Movie Title</string>
+    <string name="title">Title</string>
+    <string name="genre2">Genre</string>
+    <string name="genre3">Genre</string>
+    <string name="year2">Year</string>
+    <string name="year3">Year</string>
+    <string name="update">Update</string>
     <string-array name="spinnerItems">
         <item>G</item>
         <item>PG</item>
