@@ -83,7 +83,7 @@ public class UpdateActivity extends AppCompatActivity {
                         .setAutoPlayAnimation(true)
                         .setTitle("Danger")
                         .setTitleColor(Color.BLACK)
-                        .setMessage("Are you sure you want to delete the movie " + data.getTitle())
+                        .setMessage("Are you sure you want to delete the movie " + data.getTitle() + "?")
                         .setMessageColor(Color.BLACK)
                         .setDialogBackground(Color.WHITE)
                         .setCancelable(false);
@@ -100,6 +100,7 @@ public class UpdateActivity extends AppCompatActivity {
                     dialog.dismiss();
                 });
 
+                // This button is the 'CANCEL' button where when user presses it, it cancels the deletion process of the movie
                 Button cancelButton = new Button(UpdateActivity.this);
                 cancelButton.setText("CANCEL");
                 cancelButton.setOnClickListener(view -> dialog.dismiss());
@@ -133,6 +134,8 @@ public class UpdateActivity extends AppCompatActivity {
                 doNotDiscardButton.setText("DO NOT DISCARD");
                 doNotDiscardButton.setOnClickListener(view1 -> dialog.dismiss());
 
+                // This is the 'DISCARD' button, where when user presses it, the changes that the user entered will be cleared and no
+                // changes will be made.
                 Button discardButton = new Button(UpdateActivity.this);
                 discardButton.setText("DISCARD");
                 discardButton.setOnClickListener(view1 -> {
@@ -141,6 +144,8 @@ public class UpdateActivity extends AppCompatActivity {
                     dialog.dismiss();
                 });
 
+                // This is the 'DO NOT DISCARD' button, where when user presses it, the user remains on the updateActivity page, with the
+                // changes still in the inputs.
                 dialog.addActionButton(doNotDiscardButton)
                         .addActionButton(discardButton)
                         .setOnShowListener(dialogInterface -> {
